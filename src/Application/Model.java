@@ -32,7 +32,8 @@ public class Model {
 		ownerJson.put("name", owner.getName());
 		ownerJson.put("mobileNo", owner.getMobileNo());// check,long
 		ownerJson.put("bankBalance", owner.getBankBalance());// double
-		ownerJson.put("time", owner.getTime());
+
+		ownerJson.put("time", owner.getTime().toString());
 
 		JSONObject vehicleJson = new JSONObject();
 		vehicleJson.put("type", owner.getVehicle().getType());
@@ -43,19 +44,25 @@ public class Model {
 		ownerJson.put("vehicle", vehicleJson); // here we are substituting vehicle info in owner object
 
 		JSONArray ownerList = readOwnerListFromDb();
-		
 
 		ownerList.add(ownerJson);
-		
 
 		writeOwnerListToDb(ownerList);
-		
-		
+
 	}
 
 	public void deleteData(String carNo) throws IOException, ParseException {
-        
-		
+
+		JSONArray ownerList = readOwnerListFromDb();
+
+		int i = searchData(carNo);
+		ownerList.remove(i);// if car does not match
+		writeOwnerListToDb(ownerList);
+
+	}
+
+	public int searchData(String carNo) throws IOException, ParseException {
+
 		JSONArray ownerList = readOwnerListFromDb();
 
 		for (int i = 0; i < ownerList.size(); i++) {
@@ -64,13 +71,11 @@ public class Model {
 			JSONObject vehicleJson = (JSONObject) ownerJson.get("vehicle");
 
 			if (vehicleJson.get("carNo").equals(carNo)) {
-				ownerList.remove(i);
-
-				writeOwnerListToDb(ownerList);
-
+				return i;
 			}
 
 		}
+		return -1;
 
 	}
 
@@ -78,7 +83,7 @@ public class Model {
 		JSONParser jsonParser = new JSONParser();
 		FileReader file = new FileReader(db);
 		JSONArray ownerList = (JSONArray) jsonParser.parse(file);
-		
+
 		return ownerList;
 	}
 
@@ -91,6 +96,18 @@ public class Model {
 		} catch (IOException e) {
 			System.out.println("error found while reading the file");
 		}
+
+	}
+
+	public String getOwnerEntryTime(String carNo) throws IOException, ParseException {
+
+		int index = searchData(carNo);
+
+		JSONArray ownerList = readOwnerListFromDb();
+		JSONObject ownerJson = (JSONObject) ownerList.get(index);
+		String time = (String) ownerJson.get("time");
+
+		return time;
 
 	}
 

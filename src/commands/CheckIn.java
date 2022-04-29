@@ -1,6 +1,7 @@
 package commands;
 
 import java.io.IOException;
+import java.time.Instant;
 import java.util.Scanner;
 
 import org.json.simple.parser.ParseException;
@@ -15,6 +16,7 @@ public class CheckIn extends Command {
 	
 	public CheckIn(String shortVersion, String longVersion) {
 		super(null ,shortVersion, longVersion);
+		owner.setTime(Instant.now());//logEntryTime EntryTime
 		
 	}
 	

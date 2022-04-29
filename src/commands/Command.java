@@ -29,12 +29,12 @@ public abstract class Command {
 		this.longVersion = longVersion;
 	}
 
-	public String[] getArgument() {
+	public String[] getArgumentList() {
 		return argumentList;
 	}
 
-	public void setArgument(String[] argument) {
-		this.argumentList = argument;
+	public void setArgumentList(String[] argumentList) {
+		this.argumentList = argumentList;
 	}
 
 	

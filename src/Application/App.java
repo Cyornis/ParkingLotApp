@@ -3,6 +3,7 @@ package Application;
 import java.io.IOException;
 
 import commands.CheckIn;
+import commands.DetailsOfVehicle;
 
 public class App {
 	
@@ -12,6 +13,12 @@ public class App {
 		
 		CheckIn c = new CheckIn("ch","checkin");
 	    c.execute();
+	    
+	    DetailsOfVehicle d = new DetailsOfVehicle("dov","details");
+	    d.execute();
+	    
+	    
+	    
 		
 		
 		

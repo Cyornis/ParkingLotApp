@@ -1,5 +1,6 @@
 package commons;
 
+import java.time.Instant;
 import java.util.Scanner;
 
 public class Utilities {
@@ -29,5 +30,31 @@ public class Utilities {
 		return str;
     	 
     }
+     
+     public static int elapsedTime(Instant instant1,Instant instant2) {
+    	 
+    	 long diff = instant2.getEpochSecond()-instant1.getEpochSecond();
+    	 int hours = (int)(diff/3600);
+    	 return hours;
+     }
     
+     
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

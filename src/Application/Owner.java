@@ -1,26 +1,25 @@
 package Application;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
-public class Owner  {
-	
+import commons.Utilities;
+
+public class Owner {
+
 	private String name;
 	private long mobileNo;
 	private double bankBalance;
-    public LocalDateTime time;
-	
-	
-    public LocalDateTime getTime() {
+	public Instant time;
+	private Vehicle vehicle = new Vehicle(); // reference of Vehicle is created
+
+	public Instant getTime() {
 		return time;
 	}
 
-	public void setTime(LocalDateTime time) {
+	public void setTime(Instant time) {
 		this.time = time;
 	}
-	
-	private Vehicle vehicle = new Vehicle(); //reference of Vehicle is created
-	
-	
+
 	public Vehicle getVehicle() {
 		return vehicle;
 	}
@@ -53,24 +52,19 @@ public class Owner  {
 		this.bankBalance = bankBalance;
 	}
 
-	public double getFare() {
-		return 0.0;
-	}
 	
-	
-
 	public void displayDetails() {
-		
-		System.out.println("-----------------------------------------------------------------------------------------------------");
+
+		System.out.println(
+				"-----------------------------------------------------------------------------------------------------");
 		System.out.println("DETAILS OF OWNER");
-		System.out.println("------------------------------------------------------------------------------------------------------");
-		
-        System.out.println("name: "+this.name);
-        System.out.println("mobile number: "+this.mobileNo);
-        System.out.println("bank balance: "+this.bankBalance);
-        
-        
-        
+		System.out.println(
+				"------------------------------------------------------------------------------------------------------");
+
+		System.out.println("name: " + this.name);
+		System.out.println("mobile number: " + this.mobileNo);
+		System.out.println("bank balance: " + this.bankBalance);
+
 	}
 
 	public boolean canPay() {
@@ -78,34 +72,3 @@ public class Owner  {
 
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
