@@ -18,7 +18,7 @@ public class Utilities {
     	 
     	 do {
     		 
-    		 str=cin.next(); 
+    		 str=cin.nextLine(); 
 //    		 str =cin.readLine();
     		 
     		 if(str.length()>maxLimit) {

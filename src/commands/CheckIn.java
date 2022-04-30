@@ -105,8 +105,21 @@ public class CheckIn extends Command {
 	    System.out.println("enter the vehicle details");
 	    System.out.println("----------------------------------------------------------------------------------------");
 	   
-	    System.out.println("type: ");
-	    String type=Utilities.intractiveInput(100);
+	    System.out.println("type (2-wheeler / 4-wheeler): ");
+	    String type;
+	    while(true)
+	    {
+	    	type=Utilities.intractiveInput(100);
+	    	if(type.equals("2-wheeler") || type.equals("2-wheeler") )
+	    	{
+	    		break;
+	    	}
+	    	else
+	    	{
+	    		System.out.println("Enter either '2-wheeler or '4-wheeler '");
+	    	}
+	    }
+	    
 	    owner.getVehicle().setType(type);
 	    
 	    System.out.println("carNo: ");

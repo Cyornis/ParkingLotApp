@@ -23,7 +23,8 @@ public class CheckOut extends Command {
 		super(argumentList, shortVersion, longVersion);
 
 	}
-
+	
+	//calculates the number of hours 
 	public int hoursCal() {
 
 		int hours;
@@ -31,7 +32,14 @@ public class CheckOut extends Command {
 		try {
 			
 			String timeStr;
+
 			timeStr = model.getOwnerEntryTime(carNo);
+			if(timeStr == null)
+			{
+				System.out.println("vehicle not found ");
+				System.exit(1);
+				
+			}
 			Instant instant1 = Instant.parse(timeStr);
 
 			String str = instant2str;
@@ -97,17 +105,20 @@ public class CheckOut extends Command {
 
 	@Override
 	public boolean output() {
+		
         System.out.println("YOUR FARE IS :" + fare);
+        
 		return false;
 	}
 
+	//calculates the fare of parked vehicle 
 	public double getFare(int hours) {
 
 		double fare = 0;
 		String type = "2-wheeler";
 		double rate = 1;
 
-		if (type.equals("2-wheelers")) {
+		if (type.equals("2-wheeler")) {
 
 			int temp = hours;
 			rate = 0.15;

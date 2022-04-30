@@ -7,7 +7,8 @@ import commands.Command;
 import commands.DetailsOfVehicle;
 
 public class Parser {
-
+	
+	// try to check the command 
 	public static Command CheckCommand(String[] input)
 	{
 		

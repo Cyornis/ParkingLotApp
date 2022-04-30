@@ -26,7 +26,9 @@ public class Model {
 	}
 
 	@SuppressWarnings("unchecked")
-
+	
+	//this adds the detail of owner 
+	
 	public void addData(Owner owner) throws IOException, ParseException {
 		JSONObject ownerJson = new JSONObject();
 		ownerJson.put("name", owner.getName());
@@ -51,6 +53,8 @@ public class Model {
 
 	}
 
+	//this deletes the data from database 
+	
 	public void deleteData(String carNo) throws IOException, ParseException {
 
 		JSONArray ownerList = readOwnerListFromDb();
@@ -60,7 +64,7 @@ public class Model {
 		writeOwnerListToDb(ownerList);
 
 	}
-
+	//this searches the data taken from the databases 
 	public int searchData(String carNo) throws IOException, ParseException {
 
 		JSONArray ownerList = readOwnerListFromDb();
@@ -78,6 +82,8 @@ public class Model {
 		return -1;
 
 	}
+	
+	//this retrieves the owner list from the database 
 
 	public JSONArray readOwnerListFromDb() throws IOException  {
 		JSONParser jsonParser = new JSONParser();
@@ -98,7 +104,7 @@ public class Model {
 		
 		return ownerList;
 	}
-
+	//this writes the owner list to the database 
 	public void writeOwnerListToDb(JSONArray ownerList) {
 		
 		try (FileWriter file1 = new FileWriter(db)) {
@@ -111,15 +117,22 @@ public class Model {
 		}
 
 	}
-
+	
+	//this tries to get the owner entry time 
 	public String getOwnerEntryTime(String carNo) throws IOException, ParseException {
 
 		int index = searchData(carNo);
+		
+		if(index == -1)
+		{
+			return null;
+		}
 
 		JSONArray ownerList = readOwnerListFromDb();
 		JSONObject ownerJson = (JSONObject) ownerList.get(index);
 		String time = (String) ownerJson.get("time");
-
+		
+		
 		return time;
 
 	}
