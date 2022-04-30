@@ -27,12 +27,13 @@ public class DetailsOfVehicle extends Command {
 	@Override
 	public boolean process() {
 
-		try {
-			ownerList = model.readOwnerListFromDb();
+			try {
+				ownerList = model.readOwnerListFromDb();
+			} catch (IOException e) {
+				System.out.println("UNABLE TO GET OWNERLIST");
+			}
 
-		} catch (IOException | ParseException e) {
-			System.out.println("INVALID");
-		}
+
 
 		return true;
 	}

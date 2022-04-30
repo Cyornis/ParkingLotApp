@@ -79,15 +79,28 @@ public class Model {
 
 	}
 
-	public JSONArray readOwnerListFromDb() throws IOException, ParseException {
+	public JSONArray readOwnerListFromDb() throws IOException  {
 		JSONParser jsonParser = new JSONParser();
+		JSONArray ownerList;
 		FileReader file = new FileReader(db);
-		JSONArray ownerList = (JSONArray) jsonParser.parse(file);
 
+			
+			try {
+				ownerList = (JSONArray) jsonParser.parse(file);
+			} catch (IOException | ParseException e) {
+				
+				ownerList = new JSONArray();
+			}
+			
+	
+		
+	
+		
 		return ownerList;
 	}
 
 	public void writeOwnerListToDb(JSONArray ownerList) {
+		
 		try (FileWriter file1 = new FileWriter(db)) {
 
 			file1.write(ownerList.toJSONString());

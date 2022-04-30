@@ -2,6 +2,7 @@ package commands;
 
 import java.io.IOException;
 import java.time.Instant;
+import java.time.format.DateTimeFormatter;
 
 import org.json.simple.parser.ParseException;
 
@@ -11,7 +12,9 @@ import commons.Utilities;
 public class CheckOut extends Command {
 	
 	double fare;
+	String checkOutDateTime;
 	String carNo = getArgumentList()[0];
+	String instant2str;
 
 	Model model = new Model("database.json");
 
@@ -31,7 +34,8 @@ public class CheckOut extends Command {
 			timeStr = model.getOwnerEntryTime(carNo);
 			Instant instant1 = Instant.parse(timeStr);
 
-			String str = Utilities.intractiveInput(100);
+			String str = instant2str;
+			
 			Instant instant2 = Instant.parse(str);
 
 			hours = Utilities.elapsedTime(instant1, instant2);
@@ -46,12 +50,31 @@ public class CheckOut extends Command {
 
 	@Override
 	public boolean input() {
+		
 
+		
+		System.out.println("--------------------");
+		System.out.println("Enter the date time in the format: YYYY-MM-DD hh:mm:");
+		System.out.println("--------------------");
+		
+		checkOutDateTime = Utilities.intractiveInput(30);
+		
+		System.out.println(checkOutDateTime);
+		String[] temp= checkOutDateTime.split(" ",2);
+		String temp2 = new String(temp[0]+ "T" +temp[1]+":39.009848Z");
+		
+		instant2str = temp2;
+		
+		
+		
+	
+		
 		return false;
 	}
 
 	@Override
 	public boolean process() {
+		
 		int hours = hoursCal();
 
 	    fare = getFare(hours);

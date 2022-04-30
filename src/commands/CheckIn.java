@@ -68,7 +68,7 @@ public class CheckIn extends Command {
 	    owner.getVehicle().setManufacturer(manufacturer);
 	    
 	    
-	    return false;
+	    return true;
 	}
 
 	@Override
@@ -81,7 +81,9 @@ public class CheckIn extends Command {
 			
 		} catch (IOException | ParseException e) {
 			
+			
 			System.out.println("FAILED TO ADD DATA");
+			return false;
 		} 
 	    return true;
 	}
