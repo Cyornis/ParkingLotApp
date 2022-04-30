@@ -29,7 +29,7 @@ public class CheckOut extends Command {
 		int hours;
 
 		try {
-
+			
 			String timeStr;
 			timeStr = model.getOwnerEntryTime(carNo);
 			Instant instant1 = Instant.parse(timeStr);
@@ -56,8 +56,10 @@ public class CheckOut extends Command {
 		System.out.println("--------------------");
 		System.out.println("Enter the date time in the format: YYYY-MM-DD hh:mm:");
 		System.out.println("--------------------");
-		
-		checkOutDateTime = Utilities.intractiveInput(30);
+
+			checkOutDateTime = Utilities.intractiveInput(30);
+			
+	
 		
 		System.out.println(checkOutDateTime);
 		String[] temp= checkOutDateTime.split(" ",2);

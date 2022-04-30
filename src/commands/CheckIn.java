@@ -13,6 +13,7 @@ import commons.Utilities;
 public class CheckIn extends Command {
 
 	Owner owner = new Owner();
+	Model model = new Model("database.json");
 	
 	public CheckIn(String shortVersion, String longVersion) {
 		super(null ,shortVersion, longVersion);
@@ -23,7 +24,26 @@ public class CheckIn extends Command {
 	
 
 	@Override
-	public boolean input() {
+	public boolean input()  {
+		
+		int noOfVehicles;
+		
+		try {
+			noOfVehicles = model.readOwnerListFromDb().size();
+			if(noOfVehicles == 40)
+			{
+				System.exit(1);
+			}
+				
+			
+		} catch (IOException e1) {
+			
+			System.out.println("unable to get number of vehicles");
+			
+		}
+		
+	
+			
 		Scanner cin = new Scanner(System.in);
 		String str;
 		
@@ -36,14 +56,48 @@ public class CheckIn extends Command {
 	    String name=Utilities.intractiveInput(100);
 	    owner.setName(name);
 	    
-	    System.out.println("mobile: ");
-	    str = Utilities.intractiveInput(10);
-	    long mobile = Long.parseLong(str);	    
+	    System.out.println("mobile: ");	    
+	    long mobile;
+	    
+	    while(true)
+	    {	
+	    	try {
+	    		
+	    		str = Utilities.intractiveInput(10);
+	    		mobile = Long.parseLong(str);	
+	    		break;
+	    	
+	    	}
+	    	catch(Exception e)
+	    	{
+	    		System.out.println("numeric input required");
+
+	    	}
+	    }
+	    
+	    
+	    
 	    owner.setMobileNo(mobile);
 	    
 	    System.out.println("bankBalance: ");
-	    str=Utilities.intractiveInput(100);
-	    double bankBalance = Double.parseDouble(str);
+	    double bankBalance;   
+	    while(true)
+	    {	
+	    	try {
+	    		
+	    		str = Utilities.intractiveInput(10);
+	    		bankBalance = Double.parseDouble(str);
+	    		break;
+	    	
+	    	}
+	    	catch(Exception e)
+	    	{
+	    		System.out.println("numeric input required");
+
+	    	}
+	    }
+	    
+	    
 	    owner.setBankBalance(bankBalance);
 	    
 	    System.out.println("----------------------------------------------------------------------------------------");
@@ -56,8 +110,35 @@ public class CheckIn extends Command {
 	    owner.getVehicle().setType(type);
 	    
 	    System.out.println("carNo: ");
-	    String carNo=Utilities.intractiveInput(100);
-	    owner.getVehicle().setCarNo(carNo);
+	    String carNo;
+	    
+	    while(true) {
+	    	
+	    	
+	    	carNo=Utilities.intractiveInput(100);
+	    	
+	    		int test;
+				try {
+						test = model.searchData(carNo);
+						if(test != -1)
+				    	{
+				    		System.out.println("the given car already exists");
+				    		System.out.println("Kindly, enter again");
+				    	}
+				    	else
+				    	{
+				    		owner.getVehicle().setCarNo(carNo);
+				    		break;
+				    	}
+					
+				} 
+					catch (IOException | ParseException e) {
+					
+					e.printStackTrace();
+				}
+	    	
+	    	
+	    }
 	    
 	    System.out.println("model: ");
 	    String model=Utilities.intractiveInput(100);
@@ -74,7 +155,7 @@ public class CheckIn extends Command {
 	@Override
 	public boolean process() {
 		
-		Model model = new Model("database.json");
+		
 		
 		try {
 			model.addData(owner);

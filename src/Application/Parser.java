@@ -11,20 +11,20 @@ public class Parser {
 	public static Command CheckCommand(String[] input)
 	{
 		
-		if(input[0].equals("checkin") || input[0].equals("ci")) {
+		if(input[0].equals("--checkin") || input[0].equals("-ci")) {
 			
-			CheckIn c = new CheckIn("ch","checkin");
+			CheckIn c = new CheckIn("-ch","--checkin");
 			
 			return c;	
 			
 		}
-		else if(input[0].equals("checkout") || input[0].equals("co"))
+		else if(input[0].equals("--checkout") || input[0].equals("-co"))
 		{
 			String[] temp = new String[2];
 			try {
 				
 				temp[0] = input[1];
-				CheckOut c = new CheckOut(temp ,"co","checkout");
+				CheckOut c = new CheckOut(temp ,"-co","--checkout");
 				return c;
 			}
 			catch(ArrayIndexOutOfBoundsException e)
@@ -36,16 +36,16 @@ public class Parser {
 			
 			
 		}
-		else if(input[0].equals("capacity") || input[0].equals("cp"))
+		else if(input[0].equals("--capacity") || input[0].equals("-cp"))
 		{
-			Capacity c = new Capacity("cp","capacity");
+			Capacity c = new Capacity("-cp","--capacity");
 			return c;
 		}
 		
-		else if(input[0].equals("details") || input[0].equals("dov"))
+		else if(input[0].equals("--details") || input[0].equals("-dov"))
 		{
 
-			DetailsOfVehicle c = new DetailsOfVehicle("dov","details");
+			DetailsOfVehicle c = new DetailsOfVehicle("-dov","--details");
 			return c;
 		}
 		else

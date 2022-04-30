@@ -16,12 +16,16 @@ public class App {
 //	    DetailsOfVehicle d = new DetailsOfVehicle("dov","details");
 //	    d.execute();
 		
-		Command c =Parser.CheckCommand(args);
+		Command c = Parser.CheckCommand(args);
 		
 		if(c != null)
 		{
 			c.execute();
 			
+		}
+		else
+		{
+			System.out.println("Invalid Command");
 		}
 		
 		

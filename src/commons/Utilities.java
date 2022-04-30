@@ -1,10 +1,15 @@
 package commons;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.time.Instant;
 import java.util.Scanner;
 
 public class Utilities {
-     public static String intractiveInput(int maxLimit) {
+     public static String intractiveInput(int maxLimit)  {
+    	 
+//    	 BufferedReader cin = new BufferedReader(new InputStreamReader(System.in));
     	 
     	 Scanner cin= new Scanner(System.in);
     	 String str;
@@ -14,10 +19,11 @@ public class Utilities {
     	 do {
     		 
     		 str=cin.next(); 
+//    		 str =cin.readLine();
     		 
     		 if(str.length()>maxLimit) {
     			 System.out.println("INVALID INPUT");
-    			 
+   			 
     			 valid=false;
     		 }
     		 
